@@ -14,7 +14,7 @@
 
   <body>
     <iframe
-      src="https://raw.githubusercontent.com/nguyenkhoinguyen08012012-stack/algebra/main/Settings%20%E2%94%83%20Glacier%20Arcade.html"
+      src="https://cdn.jsdelivr.net/gh/nguyenkhoinguyen08012012-stack/algebra@main/Settings%20%E2%94%83%20Glacier%20Arcade.html"
       allowfullscreen="true">
     </iframe>
   </body>
