@@ -1,0 +1,51 @@
+(function () {
+  const canvas = document.getElementById("graph-bg");
+  const ctx = canvas.getContext("2d");
+  let width, height;
+
+  const gridSize = 80;        // larger spacing = cleaner look
+  const sideDriftFactor = 0.1; // smaller = slower sideways drift
+
+  function resize() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+    draw();
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, width, height);
+
+    const scrollY = window.scrollY || window.pageYOffset;
+
+    // slower sideways movement
+    const offsetX = -((scrollY * sideDriftFactor) % gridSize);
+    // normal vertical scroll
+    const offsetY = -(scrollY % gridSize);
+
+    ctx.strokeStyle = "rgba(255,255,255,0.04)"; // even fainter lines
+    ctx.lineWidth = 1;
+
+    // vertical lines
+    for (let x = offsetX; x < width; x += gridSize) {
+      ctx.beginPath();
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, height);
+      ctx.stroke();
+    }
+
+    // horizontal lines
+    for (let y = offsetY; y < height; y += gridSize) {
+      ctx.beginPath();
+      ctx.moveTo(0, y);
+      ctx.lineTo(width, y);
+      ctx.stroke();
+    }
+  }
+
+  window.addEventListener("resize", resize);
+  window.addEventListener("scroll", draw);
+
+  resize();
+})();

@@ -1,0 +1,77 @@
+particlesJS('particles-js', {
+  "particles": {
+    "number": {
+      "value": 10, // Number of particles
+      "density": {
+        "enable": true,
+        "value_area": 1000 // Density area for particle spread
+      }
+    },
+    "color": {
+      "value": "#ffffff" // Particle color
+    },
+    "shape": {
+      "type": "circle", // Shape of particles
+      "stroke": {
+        "width": 0,
+        "color": "#000000" // Border color (not visible due to width: 0)
+      }
+    },
+    "opacity": {
+      "value": 0.5, // Opacity of particles
+      "random": false,
+      "anim": {
+        "enable": false,
+        "speed": 1,
+        "opacity_min": 0.1,
+        "sync": false
+      }
+    },
+    "size": {
+      "value": 4, // Size of particles
+      "random": true,
+      "anim": {
+        "enable": false,
+        "speed": 20,
+        "size_min": 0.1,
+        "sync": false
+      }
+    },
+    "line_linked": {
+      "enable": true, // Enable line linking
+      "distance": 50, // Reduced distance for very close particles
+      "color": "#ffffff", // Line color
+      "opacity": 0.5, // Line opacity
+      "width": 1 // Line width
+    },
+    "move": {
+      "enable": true,
+      "speed": 3, // Movement speed of particles
+      "direction": "none",
+      "random": false,
+      "straight": false,
+      "out_mode": "out",
+      "bounce": false,
+      "attract": {
+        "enable": false,
+        "rotateX": 600,
+        "rotateY": 1200
+      }
+    }
+  },
+  "interactivity": {
+    "detect_on": "canvas",
+    "events": {
+      "onhover": {
+        "enable": false, // Disable hover effect
+        "mode": "repulse"
+      },
+      "onclick": {
+        "enable": false, // Disable click effect
+        "mode": "push"
+      },
+      "resize": true
+    }
+  },
+  "retina_detect": true
+});

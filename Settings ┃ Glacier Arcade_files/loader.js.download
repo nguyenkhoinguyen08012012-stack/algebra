@@ -1,0 +1,93 @@
+function searchFunction() {
+    for (
+        var e = document.getElementById("searchInput").value.toUpperCase(), t = document.getElementById("categorySelect").value.split(" "), n = document.getElementsByClassName("gallery")[0].getElementsByTagName("a"), l = 0;
+        l < n.length;
+        l++
+    ) {
+        var a = n[l].getAttribute("title").toUpperCase(),
+            i = n[l].getAttribute("data-category").split(" "),
+            s = a.includes(e),
+            o = t.includes("all") || t.some((e) => i.includes(e));
+        s && o ? (n[l].style.display = "") : (n[l].style.display = "none");
+    }
+}
+function filterByCategory() {
+    for (
+        var e = document.getElementById("searchInput").value.toUpperCase(), t = document.getElementById("categorySelect").value.split(" "), n = document.getElementsByClassName("gallery")[0].getElementsByTagName("a"), l = 0;
+        l < n.length;
+        l++
+    ) {
+        var a = n[l].getAttribute("title").toUpperCase(),
+            i = n[l].getAttribute("data-category").split(" "),
+            s = a.includes(e),
+            o = t.includes("all") || t.some((e) => i.includes(e));
+        s && o ? (n[l].style.display = "") : (n[l].style.display = "none");
+    }
+}
+function scrollDown() {
+    window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
+}
+function checkUnsetEmergency() {
+    let e = localStorage.getItem("emergencyKey"),
+        t = localStorage.getItem("destinationLink");
+    e || ((e = "]"), localStorage.setItem("emergencyKey", e), (document.getElementById("emergencyKeyInput").value = e)),
+        t || ((t = "https://google.com"), localStorage.setItem("destinationLink", t), (document.getElementById("destinationLinkInput").value = t));
+}
+function checkEmergencyValues() {
+    let e = localStorage.getItem("emergencyKey"),
+        t = localStorage.getItem("destinationLink");
+    (document.getElementById("emergencyKeyInput").value = e), (document.getElementById("destinationLinkInput").value = t);
+}
+function saveEmergencyKey() {
+    let e = document.getElementById("emergencyKeyInput").value,
+        t = document.getElementById("destinationLinkInput").value;
+    localStorage.setItem("emergencyKey", e), localStorage.setItem("destinationLink", t), location.reload();
+}
+function resetEmergencyKey() {
+    (document.getElementById("emergencyKeyInput").value = ""), localStorage.removeItem("emergencyKey"), (document.getElementById("destinationLinkInput").value = ""), localStorage.removeItem("destinationLink"), checkUnsetEmergency();
+}
+document.addEventListener("DOMContentLoaded", function () {
+    var e = document.getElementById("loadingScreen");
+    (e.style.opacity = 1),
+        setTimeout(function () {
+            (e.style.opacity = 0),
+                setTimeout(function () {
+                    e.style.display = "none";
+                }, 650);
+        }, 650);
+}),
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".gallery img.loading").forEach(function (e) {
+            e.addEventListener("load", function () {
+                e.classList.remove("loading");
+            });
+        });
+    }),
+    document.addEventListener("DOMContentLoaded", function () {
+        let e = document.querySelectorAll('[id^="theme"]'),
+            t = document.getElementById("resetButton");
+        function n(e) {
+            document.body.classList.remove("default", "theme1", "theme2", "theme3", "theme4", "theme5", "theme6", "theme7", "theme8", "theme9", "theme10"), document.body.classList.add(e);
+        }
+        localStorage.getItem("selectedTheme") ? n(localStorage.getItem("selectedTheme")) : n("default"),
+            e.forEach((e) => {
+                e.addEventListener("click", function () {
+                    var t;
+                    let l = e.value;
+                    n(l), (t = l), localStorage.setItem("selectedTheme", t);
+                });
+            }),
+            t.addEventListener("click", function () {
+                localStorage.removeItem("selectedTheme"), n("default");
+            });
+    }),
+    window.addEventListener("keydown", function (e) {
+        let t = localStorage.getItem("emergencyKey");
+        if (e.key === t) {
+            let n = localStorage.getItem("destinationLink");
+            window.location.href = n;
+        }
+    }),
+    window.addEventListener("load", function () {
+        checkUnsetEmergency(), checkEmergencyValues();
+    });
